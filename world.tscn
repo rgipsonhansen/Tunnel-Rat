@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=8 format=3 uid="uid://cos8vlsmssm7h"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_c65up"]
 [ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="1_xqs5m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
@@ -22,6 +23,8 @@ size = Vector2(10, 10)
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
 [node name="World" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_c65up")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x3pwn")
@@ -40,9 +43,49 @@ mesh = SubResource("PlaneMesh_uv26r")
 shape = SubResource("ConcavePolygonShape3D_neb02")
 
 [node name="player" parent="." instance=ExtResource("1_xqs5m")]
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0431461, 0.927639, 0.015697)
 
 [node name="Head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0856419, 0.607082, -0.119413)
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
+
+[node name="PauseMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 690.0
+offset_top = 248.0
+offset_right = 1239.0
+offset_bottom = 684.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -422.0
+offset_top = 111.0
+offset_right = -158.0
+offset_bottom = 317.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Quit" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.78
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
