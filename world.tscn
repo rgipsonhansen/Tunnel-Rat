@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 [gd_scene load_steps=8 format=3 uid="uid://cos8vlsmssm7h"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://cos8vlsmssm7h"]
+>>>>>>> 9ba8091a7e01d966d13e2f438cab3c9c2dc506a0
 
 [ext_resource type="Script" path="res://world.gd" id="1_c65up"]
 [ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="1_xqs5m"]
+[ext_resource type="PackedScene" uid="uid://b51n1w4ahxtj8" path="res://map.blend" id="2_4qjul"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,12 +21,6 @@ sky = SubResource("Sky_ub36o")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_uv26r"]
-size = Vector2(10, 10)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_neb02"]
-data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
-
 [node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_c65up")
@@ -33,24 +32,20 @@ environment = SubResource("Environment_x3pwn")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0201886, 0, 0.0069778)
-mesh = SubResource("PlaneMesh_uv26r")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_neb02")
-
 [node name="player" parent="." instance=ExtResource("1_xqs5m")]
+<<<<<<< HEAD
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0431461, 0.927639, 0.015697)
+=======
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0431461, 0.927639, 0.015697)
+>>>>>>> 9ba8091a7e01d966d13e2f438cab3c9c2dc506a0
 
 [node name="Head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0856419, 0.607082, -0.119413)
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
 
+<<<<<<< HEAD
 [node name="PauseMenu" type="Node2D" parent="."]
 visible = false
 
@@ -89,3 +84,7 @@ size_flags_stretch_ratio = 0.78
 text = "Quit"
 
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+=======
+[node name="map" parent="." instance=ExtResource("2_4qjul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200205, 0.37974, -0.003263)
+>>>>>>> 9ba8091a7e01d966d13e2f438cab3c9c2dc506a0
