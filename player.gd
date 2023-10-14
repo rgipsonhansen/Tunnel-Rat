@@ -52,5 +52,18 @@ func _physics_process(delta):
 	elif Input.is_action_pressed('rotateRight'):
 		rotation.y -= .05
 		
-
 	move_and_slide()
+
+
+func _on_area_3d_body_entered(body):
+	if body is Player:
+		$Head/Camera3D/Label.show()
+		
+	
+	
+func _on_area_3d_body_exited(body):
+	if body is Player:
+		$Head/Camera3D/Label.hide()
+		
+
+		
