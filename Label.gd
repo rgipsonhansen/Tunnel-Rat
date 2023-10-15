@@ -9,5 +9,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if get_node(".").visible && Input.is_action_pressed('interact'):
-			get_tree().change_scene_to_file("res://main_screen.tscn")
+			get_tree().change_scene_to_file("res://End Scene/end_scene.tscn")
 			

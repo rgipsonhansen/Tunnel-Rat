@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cos8vlsmssm7h"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_c65up"]
-[ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="1_xqs5m"]
-[ext_resource type="PackedScene" uid="uid://b51n1w4ahxtj8" path="res://map.blend" id="2_4qjul"]
-[ext_resource type="Script" path="res://Label.gd" id="3_mh4h7"]
-[ext_resource type="Script" path="res://Finish.gd" id="4_iniuh"]
+[ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
+[ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="2_8x7l3"]
+[ext_resource type="Script" path="res://Label.gd" id="3_l4i3l"]
+[ext_resource type="PackedScene" uid="uid://b51n1w4ahxtj8" path="res://map.blend" id="4_sf6b7"]
+[ext_resource type="Script" path="res://Finish.gd" id="5_78nxe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,7 +23,7 @@ glow_enabled = true
 
 [node name="World" type="Node3D"]
 process_mode = 3
-script = ExtResource("1_c65up")
+script = ExtResource("1_xev6r")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x3pwn")
@@ -32,7 +32,7 @@ environment = SubResource("Environment_x3pwn")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_xqs5m")]
+[node name="player" parent="." instance=ExtResource("2_8x7l3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0431461, 0.927639, 0.015697)
 
 [node name="Head" type="Node3D" parent="player"]
@@ -47,7 +47,7 @@ offset_top = 355.0
 offset_right = 1023.0
 offset_bottom = 475.0
 text = "[E] TO INTERACT"
-script = ExtResource("3_mh4h7")
+script = ExtResource("3_l4i3l")
 
 [node name="PauseMenu" type="Node2D" parent="."]
 visible = false
@@ -86,12 +86,12 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 0.78
 text = "Quit"
 
-[node name="map" parent="." instance=ExtResource("2_4qjul")]
+[node name="map" parent="." instance=ExtResource("4_sf6b7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200205, 0.37974, -0.003263)
 
 [node name="Finish" type="Node3D" parent="." groups=["Interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11533, -0.388148, -25.3991)
-script = ExtResource("4_iniuh")
+script = ExtResource("5_78nxe")
 
 [node name="Area3D" type="Area3D" parent="Finish"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0793006, -0.00185898, -0.0468178)
