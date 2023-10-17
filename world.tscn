@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=10 format=3 uid="uid://cos8vlsmssm7h"]
 
 [ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="1_xqs5m"]
-[ext_resource type="PackedScene" uid="uid://b51n1w4ahxtj8" path="res://map.blend" id="2_4qjul"]
+[ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
+[ext_resource type="Texture2D" uid="uid://jkjuqu0vwj4t" path="res://textures/Mud_material_basecolor.jpg" id="3_p3coc"]
+[ext_resource type="Texture2D" uid="uid://bn5g5fw4i42qo" path="res://textures/Mud_material_height.jpg" id="4_fjax8"]
+[ext_resource type="Texture2D" uid="uid://ig1u6nwlpjtl" path="res://textures/Mud_material_normal.jpg" id="5_4jb7u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,7 +17,21 @@ sky_material = SubResource("ProceduralSkyMaterial_jha51")
 background_mode = 2
 sky = SubResource("Sky_ub36o")
 tonemap_mode = 2
-glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.00784314, 0.0117647, 0.0156863, 1)
+fog_light_energy = 3.26
+fog_density = 0.5376
+fog_sky_affect = 0.535
+volumetric_fog_density = 0.0815
+volumetric_fog_albedo = Color(0.0470588, 0.0470588, 0.0470588, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e31a"]
+albedo_texture = ExtResource("3_p3coc")
+normal_enabled = true
+normal_texture = ExtResource("5_4jb7u")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_fjax8")
+uv1_triplanar = true
 
 [node name="World" type="Node3D"]
 
@@ -33,5 +50,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0856419, 0.607082, -0.1194
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="player"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.605915, 0)
+light_color = Color(0.631373, 0.596078, 0.290196, 1)
+light_energy = 15.0
+light_size = 1.0
+spot_range = 13.7279
+spot_angle = 24.9689
+
 [node name="map" parent="." instance=ExtResource("2_4qjul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200205, 0.37974, -0.003263)
+
+[node name="map" parent="map" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4e31a")
+
+[editable path="map"]
