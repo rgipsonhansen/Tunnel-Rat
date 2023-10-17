@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://h1v28ejq6bdp"]
 
-[ext_resource type="Script" path="res://main_screen.gd" id="1_0coh6"]
+[ext_resource type="Script" path="res://main_screen.gd" id="1_ydovy"]
 
 [node name="Main Screen" type="Node3D"]
-script = ExtResource("1_0coh6")
+script = ExtResource("1_ydovy")
 
 [node name="Play" type="Button" parent="."]
 offset_left = 647.0

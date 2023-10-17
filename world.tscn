@@ -1,10 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://cos8vlsmssm7h"]
-
-[ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="1_xqs5m"]
 [ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
 [ext_resource type="Texture2D" uid="uid://jkjuqu0vwj4t" path="res://textures/Mud_material_basecolor.jpg" id="3_p3coc"]
 [ext_resource type="Texture2D" uid="uid://bn5g5fw4i42qo" path="res://textures/Mud_material_height.jpg" id="4_fjax8"]
 [ext_resource type="Texture2D" uid="uid://ig1u6nwlpjtl" path="res://textures/Mud_material_normal.jpg" id="5_4jb7u"]
+[ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
+[ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="2_8x7l3"]
+[ext_resource type="Script" path="res://Label.gd" id="3_l4i3l"]
+[ext_resource type="Script" path="res://Finish.gd" id="5_78nxe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,7 +35,11 @@ heightmap_enabled = true
 heightmap_texture = ExtResource("4_fjax8")
 uv1_triplanar = true
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_eg4w3"]
+
 [node name="World" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_xev6r")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x3pwn")
@@ -42,13 +48,14 @@ environment = SubResource("Environment_x3pwn")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_xqs5m")]
+[node name="player" parent="." instance=ExtResource("2_8x7l3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0431461, 0.927639, 0.015697)
 
 [node name="Head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0856419, 0.607082, -0.119413)
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
+
 
 [node name="SpotLight3D" type="SpotLight3D" parent="player"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.605915, 0)
@@ -64,3 +71,65 @@ spot_angle = 24.9689
 surface_material_override/0 = SubResource("StandardMaterial3D_4e31a")
 
 [editable path="map"]
+
+[node name="Label" type="Label" parent="player/Head/Camera3D"]
+visible = false
+offset_left = 853.0
+offset_top = 355.0
+offset_right = 1023.0
+offset_bottom = 475.0
+text = "[E] TO INTERACT"
+script = ExtResource("3_l4i3l")
+
+[node name="PauseMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 690.0
+offset_top = 248.0
+offset_right = 1239.0
+offset_bottom = 684.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -422.0
+offset_top = 111.0
+offset_right = -158.0
+offset_bottom = 317.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Quit" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.78
+text = "Quit"
+
+[node name="Finish" type="Node3D" parent="." groups=["Interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11533, -0.388148, -25.3991)
+script = ExtResource("5_78nxe")
+
+[node name="Area3D" type="Area3D" parent="Finish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0793006, -0.00185898, -0.0468178)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Finish/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0354781, -0.00209512, 0.0076232)
+shape = SubResource("SphereShape3D_eg4w3")
+
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="body_entered" from="Finish/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Finish/Area3D" to="player" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Finish/Area3D" to="player" method="_on_area_3d_body_exited"]
