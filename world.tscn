@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=15 format=3 uid="uid://cos8vlsmssm7h"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
 [ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
 [ext_resource type="PackedScene" uid="uid://cry0cnpyclnyu" path="res://player.tscn" id="2_8x7l3"]
+[ext_resource type="Script" path="res://Head.gd" id="3_k5xo8"]
 [ext_resource type="Script" path="res://Label.gd" id="3_l4i3l"]
 [ext_resource type="Texture2D" uid="uid://jkjuqu0vwj4t" path="res://textures/Mud_material_basecolor.jpg" id="3_p3coc"]
 [ext_resource type="Texture2D" uid="uid://bn5g5fw4i42qo" path="res://textures/Mud_material_height.jpg" id="4_fjax8"]
@@ -53,7 +54,8 @@ shadow_enabled = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0431461, 0.927639, 0.015697)
 
 [node name="Head" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0856419, 0.607082, -0.119413)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0811835, 0.586587, -0.0556108)
+script = ExtResource("3_k5xo8")
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
 
