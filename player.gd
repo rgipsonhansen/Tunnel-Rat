@@ -32,15 +32,13 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-#Tank control movement
-	if Input.is_action_pressed('rotateLeft'):
-		rotation.y +=  .05
-	elif Input.is_action_pressed('rotateRight'):
-		rotation.y -= .05
+##Tank control movement
+#	if Input.is_action_pressed('rotateLeft'):
+#		rotation.y +=  .05
+#	elif Input.is_action_pressed('rotateRight'):
+#		rotation.y -= .05
 		
 	move_and_slide()
-
-	
 
 
 func _on_area_3d_body_entered(body):

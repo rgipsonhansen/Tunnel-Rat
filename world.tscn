@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=18 format=3 uid="uid://cos8vlsmssm7h"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
 [ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
@@ -39,6 +39,74 @@ uv1_triplanar = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eg4w3"]
 
+[sub_resource type="Animation" id="Animation_qfw73"]
+resource_name = "Movement_Main"
+length = 10.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.000981774, 0.861052, -0.0522765), Vector3(0.264695, -0.301128, -0.328593), Vector3(-0.314925, -0.34562, -2.78543), Vector3(-0.862868, -0.383612, -5.05081)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.216421, 0), Vector3(0, 0.432842, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d6i22"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.000981774, 0.861052, -0.0522765)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewio3"]
+_data = {
+"Movement_Main": SubResource("Animation_qfw73"),
+"RESET": SubResource("Animation_d6i22")
+}
+
 [node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_xev6r")
@@ -51,13 +119,15 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("2_8x7l3")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0431461, 0.927639, 0.015697)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.000981774, 0.861052, -0.0522765)
 
 [node name="Head" type="Node3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0811835, 0.586587, -0.0556108)
+rotation_edit_mode = 2
 script = ExtResource("3_k5xo8")
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00347555, -0.00692773, -0.00132942)
 
 [node name="Label" type="Label" parent="player/Head/Camera3D"]
 visible = false
@@ -128,6 +198,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0793006, -0.00185898, -0.04
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Finish/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0354781, -0.00209512, 0.0076232)
 shape = SubResource("SphereShape3D_eg4w3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Movement_Main"
+libraries = {
+"": SubResource("AnimationLibrary_ewio3")
+}
 
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="body_entered" from="Finish/Area3D" to="." method="_on_area_3d_body_entered"]

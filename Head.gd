@@ -19,5 +19,5 @@ func _input(event):
 		$".".transform.basis = Basis()
 		rotate_object_local(Vector3(0,1,0), rot_x)
 		rotate_object_local(Vector3(1,0,0), rot_y)
-		rotation.y = clamp(rotation.y, deg_to_rad(-85), deg_to_rad(85))
 		rotation.x = clamp(rotation.x, deg_to_rad(-85), deg_to_rad(85))
+		rotation.y = clamp(rotation.y, deg_to_rad(-85), deg_to_rad(85))
