@@ -41,14 +41,14 @@ uv1_triplanar = true
 
 [sub_resource type="Animation" id="Animation_qfw73"]
 resource_name = "Movement_Main"
-length = 10.0
+length = 15.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("player")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
+tracks/0/keys = PackedFloat32Array(4, 1, -1.3478, -0.584742, -9.91788)
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -56,10 +56,10 @@ tracks/1/path = NodePath("player:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.6, 1, 1.7, 3, 4, 5.6, 7, 9.1, 10.2, 11.2, 12.8, 14.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.000981774, 0.861052, -0.0522765), Vector3(0.264695, -0.301128, -0.328593), Vector3(-0.314925, -0.34562, -2.78543), Vector3(-0.862868, -0.383612, -5.05081)]
+"values": [Vector3(-0.000981774, 0.861052, -0.0522765), Vector3(0.264695, -0.301128, -0.328593), Vector3(-0.314925, -0.34562, -2.78543), Vector3(-0.862868, -0.383612, -5.05081), Vector3(-1.74832, -0.800234, -7.94058), Vector3(-1.3478, -0.584742, -9.91788), Vector3(0.283922, -0.470175, -12.8883), Vector3(3.36572, -0.326255, -14.8368), Vector3(4.76921, -0.45442, -18.9546), Vector3(4.14482, -0.486277, -22.9124), Vector3(3.53551, -0.0878177, -24.7917), Vector3(1.0815, -0.378476, -26.7142), Vector3(-1.96903, -0.473006, -25.1288)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -68,10 +68,10 @@ tracks/2/path = NodePath("player:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1, 1.1, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(1, 1.1, 1.7, 3, 4, 5.6, 7, 9.1, 10.2, 11.2, 12.8, 14.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.216421, 0), Vector3(0, 0.432842, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.216421, 0), Vector3(0, 0.432842, 0), Vector3(0, -0.216421, 0), Vector3(0, -0.432842, 0), Vector3(0, -0.865683, 0), Vector3(0, -1.0821, 0), Vector3(0, 0.155334, 0), Vector3(0, 0.155334, 0), Vector3(0, 0.588176, 0), Vector3(0, 1.67028, 0), Vector3(0, 2.09614, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_d6i22"]
