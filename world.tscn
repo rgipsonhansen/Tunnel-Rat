@@ -200,6 +200,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0354781, -0.00209512, 0.007
 shape = SubResource("SphereShape3D_eg4w3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 1
 autoplay = "Movement_Main"
 libraries = {
 "": SubResource("AnimationLibrary_ewio3")
