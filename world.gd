@@ -14,16 +14,15 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$PauseMenu.visible = not $PauseMenu.visible
 
+func _physics_process(delta):
+	if $player/Head/Camera3D/RayCast3D.is_colliding() and Input.is_action_just_pressed("interact"):
+		$AnimationPlayer.play("Path.1")
+	
 		
 func _on_quit_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://main_screen.tscn")
 	
-
-
-
-
-
 
 
 func _on_play_pressed():
