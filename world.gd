@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var label = $Finish/Interact/Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -14,9 +15,18 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$PauseMenu.visible = not $PauseMenu.visible
 
+func interactable():
+	if  $player/Head/Camera3D/RayCast3D.get_collider() == $Path_1/Lane_1:
+		return("Path.1")
+	elif $player/Head/Camera3D/RayCast3D.get_collider() == $Path_2/Lane_2:
+		return("Path.2")
+	
+
+
 func _physics_process(delta):
+	var interact = interactable()
 	if $player/Head/Camera3D/RayCast3D.is_colliding() and Input.is_action_just_pressed("interact"):
-		$AnimationPlayer.play("Path.1")
+		$AnimationPlayer.play(interact)
 	
 		
 func _on_quit_pressed():

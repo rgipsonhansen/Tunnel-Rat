@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=23 format=3 uid="uid://cos8vlsmssm7h"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
 [ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ig1u6nwlpjtl" path="res://textures/Mud_material_normal.jpg" id="5_4jb7u"]
 [ext_resource type="Script" path="res://Finish.gd" id="5_78nxe"]
 [ext_resource type="PackedScene" uid="uid://dd1agnxkppx7n" path="res://Pathing/path_1.tscn" id="10_kmut7"]
+[ext_resource type="PackedScene" uid="uid://bk6adnl7iidmx" path="res://Pathing/path_2.tscn" id="11_4eyyl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jha51"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -137,10 +138,39 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_gx8ul"]
+resource_name = "Path.2"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 4.1, 6.1, 8.1, 10.2, 12.1, 14.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.26065, -0.489597, -14.9329), Vector3(4.42267, -0.300847, -15.8931), Vector3(4.65889, -0.191434, -19.1158), Vector3(4.35631, -0.34298, -22.6499), Vector3(3.94727, -0.0771473, -24.6102), Vector3(2.46747, -0.634731, -26.0837), Vector3(-0.151506, -0.63319, -26.3534), Vector3(-1.78222, -0.657487, -25.3625)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1, 4.1, 6.1, 8.1, 10.2, 12.1, 14.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.0821, 0), Vector3(0, -0.214676, 0), Vector3(0, 0.00174533, 0), Vector3(0, 0.00174533, 0), Vector3(0, 0.434587, 0), Vector3(0, 0.867429, 0), Vector3(0, 1.95128, 0), Vector3(0, 1.95128, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ewio3"]
 _data = {
 "Movement_Main": SubResource("Animation_qfw73"),
 "Path.1": SubResource("Animation_6q35g"),
+"Path.2": SubResource("Animation_gx8ul"),
 "RESET": SubResource("Animation_d6i22")
 }
 
@@ -258,8 +288,8 @@ libraries = {
 transform = Transform3D(0.999189, 0.0402539, 0, -0.0402539, 0.999189, 0, 0, 0, 1, 6.63491, -0.0560937, -15.1828)
 script = SubResource("GDScript_x5fwv")
 
-[node name="lane_1" parent="Path_1" index="0"]
-script = null
+[node name="Path_2" parent="." instance=ExtResource("11_4eyyl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33676, -0.0932501, -17.4122)
 
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="body_entered" from="Finish/Area3D" to="." method="_on_area_3d_body_entered"]
