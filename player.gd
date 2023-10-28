@@ -41,7 +41,7 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
-
+#Shows and hides end interaction
 func _on_area_3d_body_entered(body):
 	if body is Player:
 		$Head/Camera3D/Label.show()

@@ -7,6 +7,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
+	#Allows cursor to be hidden unless game is paused
 	if Input.is_action_just_pressed('pause'):
 		get_tree().paused = not get_tree().paused
 		if get_tree().paused:
@@ -16,6 +17,7 @@ func _process(delta):
 		$PauseMenu.visible = not $PauseMenu.visible
 
 func interactable():
+	#Determines which interactable raycast is looking at
 	if  $player/Head/Camera3D/RayCast3D.get_collider() == $Path_1/Lane_1:
 		return("Path.1")
 	elif $player/Head/Camera3D/RayCast3D.get_collider() == $Path_2/Lane_2:
@@ -24,6 +26,7 @@ func interactable():
 
 
 func _physics_process(delta):
+	#Pulls the Path the ray is detecting and then on interaction, plays animation
 	var interact = interactable()
 	if $player/Head/Camera3D/RayCast3D.is_colliding() and Input.is_action_just_pressed("interact"):
 		$AnimationPlayer.play(interact)
