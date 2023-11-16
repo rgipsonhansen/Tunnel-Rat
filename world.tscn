@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cos8vlsmssm7h"]
+[gd_scene load_steps=24 format=3 uid="uid://cos8vlsmssm7h"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_xev6r"]
 [ext_resource type="PackedScene" uid="uid://c7hpwrked3gsx" path="res://map.blend" id="2_4qjul"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://jkjuqu0vwj4t" path="res://textures/Mud_material_basecolor.jpg" id="3_p3coc"]
 [ext_resource type="Texture2D" uid="uid://bn5g5fw4i42qo" path="res://textures/Mud_material_height.jpg" id="4_fjax8"]
 [ext_resource type="Texture2D" uid="uid://ig1u6nwlpjtl" path="res://textures/Mud_material_normal.jpg" id="5_4jb7u"]
+[ext_resource type="PackedScene" uid="uid://cuvlbr8gnd8aq" path="res://Control/crosshair.tscn" id="5_64f87"]
 [ext_resource type="Script" path="res://Finish.gd" id="5_78nxe"]
 [ext_resource type="PackedScene" uid="uid://dd1agnxkppx7n" path="res://Pathing/path_1.tscn" id="10_kmut7"]
 [ext_resource type="PackedScene" uid="uid://bk6adnl7iidmx" path="res://Pathing/path_2.tscn" id="11_4eyyl"]
@@ -111,33 +112,6 @@ tracks/2/keys = {
 "values": [Vector3(0, -1.73137, 0), Vector3(0, -1.73137, 0), Vector3(0, -1.73137, 0), Vector3(0, -1.51495, 0), Vector3(0, -0.649262, 0), Vector3(0, -0.383972, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_d6i22"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.000981774, 0.861052, -0.0522765)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("player:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_gx8ul"]
 resource_name = "Path.2"
 length = 15.0
@@ -164,6 +138,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, -1.0821, 0), Vector3(0, -0.214676, 0), Vector3(0, 0.00174533, 0), Vector3(0, 0.00174533, 0), Vector3(0, 0.434587, 0), Vector3(0, 0.867429, 0), Vector3(0, 1.95128, 0), Vector3(0, 1.95128, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d6i22"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.000981774, 0.861052, -0.0522765)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ewio3"]
@@ -206,11 +207,11 @@ rotation_edit_mode = 2
 script = ExtResource("3_k5xo8")
 
 [node name="Camera3D" type="Camera3D" parent="player/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00347555, -0.00692773, -0.00132942)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0501445, -0.0705891, -0.0127669)
 
 [node name="RayCast3D" type="RayCast3D" parent="player/Head/Camera3D"]
 process_mode = 1
-transform = Transform3D(0.987851, 0.0296053, 0.152557, 0.1546, -0.0875605, -0.98409, -0.0157767, 0.995719, -0.0910737, 0.0439005, -0.0164323, 0.00838852)
+transform = Transform3D(0.987851, 0.0296053, 0.152557, 0.1546, -0.0875605, -0.98409, -0.0157767, 0.995719, -0.0910737, 0.002, -0.072, -0.01)
 target_position = Vector3(0, -40, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(0.0941176, 0.619608, 0.811765, 1)
@@ -223,6 +224,8 @@ offset_right = 1023.0
 offset_bottom = 475.0
 text = "[E] TO INTERACT"
 script = ExtResource("3_l4i3l")
+
+[node name="Crosshair" parent="player/Head/Camera3D" instance=ExtResource("5_64f87")]
 
 [node name="map" parent="." instance=ExtResource("2_4qjul")]
 

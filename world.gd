@@ -12,8 +12,10 @@ func _process(delta):
 		get_tree().paused = not get_tree().paused
 		if get_tree().paused:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			$player/Head/Camera3D/Crosshair.hide()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			$player/Head/Camera3D/Crosshair.show()
 		$PauseMenu.visible = not $PauseMenu.visible
 
 func interactable():
